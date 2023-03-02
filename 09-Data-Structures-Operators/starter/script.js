@@ -111,6 +111,38 @@ console.log(1, 2, 7, 8, 9);
 const newMenu = [...restaurant.mainMenu, 'Gnocci'];
 console.log(newMenu);
 
+// Use Any data type return any data type
+
+// 1) || Return the first true value
+console.log(0 || 'Jonas');
+console.log('' || 'Jonas');
+console.log(true || 0);
+console.log(undefined || null);
+console.log(null || 0);
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+const guests2 = restaurant.numGuests || 10;
+
+console.log(guests1);
+console.log(guests2);
+
+// 2) && Return the first false value
+console.log('--- AND ---');
+console.log(0 && 'Jasons');
+console.log(7 && 'Jasons');
+
+console.log('Hello' && 23 && null && 'jonas');
+
+// Practical Example
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
 // Copy array
 const mainMenuCopy = [...restaurant.mainMenu];
 
