@@ -46,6 +46,11 @@ const restaurant = {
       `Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
 restaurant.orderDelivery({
@@ -60,10 +65,42 @@ restaurant.orderDelivery({
   starterIndex: 1,
 });
 
+// (1) Destructor
+
+// Spread, because on RIGHT side of =
+const arrSpread = [1, 2, ...[3, 4]];
+const [first, second, ...others] = [1, 2, 3, 4, 5];
+console.log(first, second, others);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+
+console.log(pizza, risotto, otherFood);
+
+// Objects
+
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
 // Spread Operator
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
 console.log(badNewArr);
+
+// (2) Functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 7, 6, 5, 4, 1);
+
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'tomatoes');
 
 const newArr = [1, 2, ...arr];
 console.log(newArr);
@@ -87,16 +124,16 @@ const letters = [...str, '', 'S.'];
 console.log(letters);
 console.log(...str);
 
-const ingredients = [
-  prompt("Let's make pasta! Ingredient 1?"),
-  prompt('Ingredient 2?'),
-  prompt('Ingredient 3'),
-];
+// const ingredients = [
+//   prompt("Let's make pasta! Ingredient 1?"),
+//   prompt('Ingredient 2?'),
+//   prompt('Ingredient 3'),
+// ];
 
-restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
-restaurant.orderPasta(...ingredients);
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+// restaurant.orderPasta(...ingredients);
 
-console.log(ingredients);
+// console.log(ingredients);
 
 // Objects
 
