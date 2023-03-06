@@ -14,7 +14,7 @@ const openingHoursLiteral = {
     open: 11,
     close: 23,
   },
-  [`day-${2 + 4}`]: {
+  [weekdaysLiteral[5]]: {
     open: 0,
     close: 24,
   },
@@ -27,7 +27,6 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-
   openingHours: {
     thu: {
       open: 12,
@@ -102,6 +101,36 @@ console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
 const users = [{ name: 'Jonas', email: 'Hloo@jonas.io' }];
 
 console.log(users[1]?.name ?? 'User array empty');
+
+// Looping Objects: Object Keys, Values, and Entries
+const properties = Object.keys(openingHoursLiteral);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of Object.keys(openingHoursLiteral)) {
+  console.log(day);
+  openStr += `${day}, `;
+}
+
+console.log(openStr);
+
+// Property Values
+const values = Object.values(openingHoursLiteral);
+console.log(values);
+
+// Entire object
+const entries = Object.entries(openingHoursLiteral);
+console.log(entries);
+
+// [key, value]
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
+}
+
+for (const x of entries) {
+  console.log(x);
+}
 
 restaurant.orderDelivery({
   time: '22:30',
@@ -293,6 +322,38 @@ printGoals(...game.scored);
 // 7.
 team1 < team2 && console.log(`Team 1 is more likely to win`);
 team1 > team2 && console.log(`Team 2 is more likely to win`);
+
+// Coding Challenge #2
+
+// 1. Loop over array
+for (const [i, el] of game.scored.entries()) {
+  console.log(`Goal ${i}: ${el}`);
+}
+
+// 2. loop to calculate average
+let average = 0;
+const adds = Object.values(game.odds);
+for (const add of adds) {
+  average += add;
+}
+
+average /= adds.length;
+console.log(average);
+
+// 3. Print the 3 odds to the console
+for (const [team, value] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`${team} of ${value}`);
+  console.log(`Odd of ${teamStr}: ${value}`);
+}
+
+// 4.
+const scorers = {};
+for (const player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+
+console.log(scorers);
 
 // Copy array
 const mainMenuCopy = [...restaurant.mainMenu];
